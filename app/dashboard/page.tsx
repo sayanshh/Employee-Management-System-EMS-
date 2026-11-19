@@ -60,9 +60,9 @@ export default function DashboardPage() {
     <DashboardShell title={role === 'admin' ? 'Executive Dashboard' : 'Employee Workspace'}>
       {loading ? (
         <div className="flex h-64 items-center justify-center">
-          <div className="flex flex-col items-center gap-2">
-            <div className="h-7 w-7 animate-spin rounded-full border-2 border-[#1c1c1c] border-t-transparent" />
-            <span className="text-xs text-[#5f5f5d]">Loading metrics...</span>
+          <div className="flex flex-col items-center gap-3">
+            <div className="h-8 w-8 animate-spin rounded-full border-3 border-indigo-600 border-t-transparent" />
+            <span className="text-xs font-medium text-slate-500">Loading metrics...</span>
           </div>
         </div>
       ) : role === 'admin' ? (

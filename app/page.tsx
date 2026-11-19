@@ -19,10 +19,10 @@ export default function Home() {
   }, [user, isLoading, router]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[#09090b]">
+    <div className="flex min-h-screen items-center justify-center bg-[#f8fafc]">
       <div className="flex flex-col items-center gap-3">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-purple-500 border-t-transparent" />
-        <p className="text-xs text-zinc-500">Redirecting to EMS Core...</p>
+        <div className="h-8 w-8 animate-spin rounded-full border-3 border-indigo-600 border-t-transparent" />
+        <p className="text-xs font-medium text-slate-500">Redirecting to EMS Core...</p>
       </div>
     </div>
   );

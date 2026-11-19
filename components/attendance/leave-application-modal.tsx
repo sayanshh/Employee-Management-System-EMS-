@@ -122,24 +122,24 @@ export function LeaveApplicationModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="relative w-full max-w-lg rounded-[16px] border border-[#eceae4] bg-[#f7f4ed] p-6 shadow-2xl animate-scale-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm animate-in fade-in duration-200">
+      <div className="relative w-full max-w-lg rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl animate-scale-in">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-[#eceae4] pb-4">
-          <div className="flex items-center gap-2.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-[8px] bg-[#eceae4] text-[#1c1c1c]">
-              <Calendar className="h-4 w-4" />
+        <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-600 text-white shadow-md shadow-indigo-500/25">
+              <Calendar className="h-5 w-5" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-[#1c1c1c] -tracking-tight">Apply for Leave</h3>
-              <p className="text-xs text-[#5f5f5d]">
+              <h3 className="text-base font-bold text-slate-900 tracking-tight">Apply for Leave</h3>
+              <p className="text-xs text-slate-500">
                 Filing as {employee.fullName} ({employee.employeeCode})
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="rounded-[6px] p-1.5 text-[#5f5f5d] hover:text-[#1c1c1c] hover:bg-[#eceae4]/60 active:scale-90 transition-all duration-150"
+            className="rounded-lg p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-100 active:scale-90 transition-all duration-150"
           >
             <X className="h-5 w-5" />
           </button>
@@ -147,18 +147,18 @@ export function LeaveApplicationModal({
 
         <form onSubmit={handleSubmit} className="mt-4 space-y-4">
           {validationError && (
-            <div className="rounded-[8px] border border-rose-200 bg-rose-50 p-3 text-xs text-rose-800 flex items-start gap-2">
-              <AlertTriangle className="h-4 w-4 shrink-0 mt-0.5 text-rose-700" />
+            <div className="rounded-xl border border-rose-200 bg-rose-50 p-3.5 text-xs text-rose-700 flex items-start gap-2.5 font-medium">
+              <AlertTriangle className="h-4 w-4 shrink-0 mt-0.5 text-rose-600" />
               <span>{validationError}</span>
             </div>
           )}
 
           {/* Leave Category Selector */}
           <div>
-            <label className="block text-xs font-medium text-[#1c1c1c] mb-1.5">
+            <label className="block text-xs font-semibold text-slate-700 mb-1.5">
               Select Leave Category
             </label>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-3 gap-2.5">
               {(['casual', 'sick', 'earned'] as LeaveType[]).map((type) => {
                 const balance = employee.leaveBalance?.[type] ?? 0;
                 const isSelected = leaveType === type;
@@ -167,23 +167,23 @@ export function LeaveApplicationModal({
                     type="button"
                     key={type}
                     onClick={() => setLeaveType(type)}
-                    className={`rounded-[8px] border p-2.5 text-left transition-all ${
+                    className={`rounded-xl border-2 p-3 text-left transition-all ${
                       isSelected
-                        ? 'border-[#1c1c1c] bg-[#eceae4] text-[#1c1c1c]'
-                        : 'border-[#eceae4] bg-[#f7f4ed] text-[#5f5f5d] hover:text-[#1c1c1c]'
+                        ? 'border-indigo-500 bg-indigo-50/70 text-indigo-950 shadow-xs ring-2 ring-indigo-500/20'
+                        : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50'
                     }`}
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-semibold capitalize text-[#1c1c1c]">{type}</span>
+                      <span className="text-xs font-bold capitalize text-slate-900">{type}</span>
                       <span
-                        className={`text-[10px] px-1.5 py-0.2 rounded font-mono ${
-                          balance > 0 ? 'text-emerald-800 bg-emerald-50' : 'text-rose-800 bg-rose-50'
+                        className={`text-[10px] px-2 py-0.5 rounded-full font-mono font-bold ${
+                          balance > 0 ? 'text-emerald-700 bg-emerald-100/80 border border-emerald-300' : 'text-rose-700 bg-rose-100/80 border border-rose-300'
                         }`}
                       >
                         {balance}d
                       </span>
                     </div>
-                    <span className="text-[10px] text-[#5f5f5d] mt-1 block">
+                    <span className="text-[10px] text-slate-500 font-medium mt-1 block">
                       {type === 'sick' ? 'Medical' : type === 'casual' ? 'Personal' : 'Privilege'}
                     </span>
                   </button>
@@ -193,9 +193,9 @@ export function LeaveApplicationModal({
           </div>
 
           {/* Date Range */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             <div>
-              <label className="block text-xs font-medium text-[#1c1c1c] mb-1">
+              <label className="block text-xs font-semibold text-slate-700 mb-1">
                 Start Date <span className="text-rose-500">*</span>
               </label>
               <input
@@ -203,11 +203,11 @@ export function LeaveApplicationModal({
                 required
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className="w-full rounded-[6px] border border-[#eceae4] bg-[#f7f4ed] px-3 py-2 text-xs text-[#1c1c1c] focus:border-[#1c1c1c] focus:outline-none focus:ring-1 focus:ring-[#1c1c1c]"
+                className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 shadow-xs font-medium"
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-[#1c1c1c] mb-1">
+              <label className="block text-xs font-semibold text-slate-700 mb-1">
                 End Date <span className="text-rose-500">*</span>
               </label>
               <input
@@ -215,23 +215,23 @@ export function LeaveApplicationModal({
                 required
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                className="w-full rounded-[6px] border border-[#eceae4] bg-[#f7f4ed] px-3 py-2 text-xs text-[#1c1c1c] focus:border-[#1c1c1c] focus:outline-none focus:ring-1 focus:ring-[#1c1c1c]"
+                className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 shadow-xs font-medium"
               />
             </div>
           </div>
 
           {/* Auto-computed Days Pill */}
-          <div className="rounded-[8px] border border-[#eceae4] bg-[#eceae4]/40 p-3 flex items-center justify-between text-xs">
-            <span className="text-[#5f5f5d]">Total Working Days Requested:</span>
-            <div className="flex items-center gap-1.5 font-bold font-mono text-[#1c1c1c]">
-              <Clock className="h-3.5 w-3.5 text-[#5f5f5d]" />
+          <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5 flex items-center justify-between text-xs">
+            <span className="text-slate-600 font-medium">Total Working Days Requested:</span>
+            <div className="flex items-center gap-1.5 font-bold font-mono text-slate-900">
+              <Clock className="h-4 w-4 text-indigo-600" />
               <span>{calculatedDays} day(s)</span>
             </div>
           </div>
 
           {/* Reason Field */}
           <div>
-            <label className="block text-xs font-medium text-[#1c1c1c] mb-1">
+            <label className="block text-xs font-semibold text-slate-700 mb-1">
               Reason / Purpose <span className="text-rose-500">*</span>
             </label>
             <textarea
@@ -240,24 +240,24 @@ export function LeaveApplicationModal({
               value={reason}
               onChange={(e) => setReason(e.target.value)}
               placeholder="Please describe the reason for your time-off request..."
-              className="w-full rounded-[6px] border border-[#eceae4] bg-[#f7f4ed] px-3 py-2 text-xs text-[#1c1c1c] placeholder:text-[#5f5f5d]/60 focus:border-[#1c1c1c] focus:outline-none focus:ring-1 focus:ring-[#1c1c1c] resize-none"
+              className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 shadow-xs resize-none"
             />
           </div>
 
           {/* Footer Buttons */}
-          <div className="flex justify-end gap-2.5 pt-3 border-t border-[#eceae4]">
+          <div className="flex justify-end gap-2.5 pt-4 border-t border-slate-100">
             <button
               type="button"
               onClick={onClose}
               disabled={submitting}
-              className="rounded-[6px] border border-[#eceae4] bg-[#f7f4ed] px-4 py-2 text-xs font-medium text-[#1c1c1c] hover:bg-[#eceae4]/50 transition-colors"
+              className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-700 hover:border-slate-300 hover:bg-slate-50 transition-all shadow-xs"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={submitting || Boolean(validationError) || calculatedDays === 0}
-              className="rounded-[6px] bg-[#1c1c1c] hover:bg-[#2b2b2b] text-[#fcfbf8] shadow-button-inset px-5 py-2 text-xs font-semibold transition-all active:scale-[0.98] disabled:opacity-50"
+              className="rounded-lg bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white shadow-md shadow-indigo-500/25 px-5 py-2 text-xs font-bold transition-all active:scale-[0.98] disabled:opacity-50"
             >
               {submitting ? 'Submitting...' : 'Submit Request'}
             </button>

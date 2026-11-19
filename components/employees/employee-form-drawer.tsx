@@ -179,20 +179,20 @@ export function EmployeeFormDrawer({
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden bg-black/30 backdrop-blur-sm animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 overflow-hidden bg-slate-900/40 backdrop-blur-sm animate-in fade-in duration-200">
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
-        <div className="w-screen max-w-xl bg-[#f7f4ed] border-l border-[#eceae4] shadow-2xl flex flex-col justify-between animate-in slide-in-from-right duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]">
+        <div className="w-screen max-w-xl bg-white border-l border-slate-200 shadow-2xl flex flex-col justify-between animate-in slide-in-from-right duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]">
           {/* Header */}
-          <div className="p-6 border-b border-[#eceae4] flex items-center justify-between bg-[#f7f4ed]">
-            <div className="flex items-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-[8px] bg-[#eceae4] text-[#1c1c1c]">
-                <User className="h-4 w-4" />
+          <div className="p-6 border-b border-slate-200 flex items-center justify-between bg-slate-50/70">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-600 text-white shadow-md shadow-indigo-500/25">
+                <User className="h-5 w-5" />
               </div>
               <div>
-                <h2 className="text-base font-bold text-[#1c1c1c] -tracking-tight">
+                <h2 className="text-base font-bold text-slate-900 tracking-tight">
                   {isEditMode ? 'Edit Employee Record' : 'Onboard New Employee'}
                 </h2>
-                <p className="text-xs text-[#5f5f5d]">
+                <p className="text-xs text-slate-500">
                   {isEditMode
                     ? `Updating credentials for ${initialEmployee?.fullName}`
                     : 'Add a new member to the organization roster'}
@@ -201,29 +201,29 @@ export function EmployeeFormDrawer({
             </div>
             <button
               onClick={onClose}
-              className="rounded-[6px] p-1.5 text-[#5f5f5d] hover:text-[#1c1c1c] hover:bg-[#eceae4]/60 active:scale-90 transition-all duration-150"
+              className="rounded-lg p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-100 active:scale-90 transition-all duration-150"
             >
               <X className="h-5 w-5" />
             </button>
           </div>
 
           {/* Form Body */}
-          <form id="employee-form" onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-5">
+          <form id="employee-form" onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-6">
             {error && (
-              <div className="rounded-[8px] border border-rose-200 bg-rose-50 p-3 text-xs text-rose-800">
+              <div className="rounded-xl border border-rose-200 bg-rose-50 p-3.5 text-xs text-rose-700 font-medium">
                 {error}
               </div>
             )}
 
             {/* Primary Details */}
             <div className="space-y-4">
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-[#1c1c1c] flex items-center gap-1.5">
-                <Sparkles className="h-3 w-3 text-[#5f5f5d]" /> Basic Information
+              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+                <Sparkles className="h-3.5 w-3.5 text-indigo-600" /> Basic Information
               </h3>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
-                  <label className="block text-xs font-medium text-[#1c1c1c] mb-1">
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
                     Employee Code <span className="text-rose-500">*</span>
                   </label>
                   <input
@@ -232,12 +232,12 @@ export function EmployeeFormDrawer({
                     value={employeeCode}
                     onChange={(e) => setEmployeeCode(e.target.value)}
                     placeholder="EMP-1015"
-                    className="w-full rounded-[6px] border border-[#eceae4] bg-[#f7f4ed] px-3 py-2 text-xs text-[#1c1c1c] placeholder:text-[#5f5f5d]/60 focus:border-[#1c1c1c] focus:outline-none focus:ring-1 focus:ring-[#1c1c1c] font-mono"
+                    className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 font-mono shadow-xs transition-all"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-[#1c1c1c] mb-1">
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
                     Full Name <span className="text-rose-500">*</span>
                   </label>
                   <input
@@ -246,14 +246,14 @@ export function EmployeeFormDrawer({
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="e.g. Ishaan Deshmukh"
-                    className="w-full rounded-[6px] border border-[#eceae4] bg-[#f7f4ed] px-3 py-2 text-xs text-[#1c1c1c] placeholder:text-[#5f5f5d]/60 focus:border-[#1c1c1c] focus:outline-none focus:ring-1 focus:ring-[#1c1c1c]"
+                    className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 shadow-xs transition-all"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
-                  <label className="block text-xs font-medium text-[#1c1c1c] mb-1">
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
                     Work Email <span className="text-rose-500">*</span>
                   </label>
                   <input
@@ -262,12 +262,12 @@ export function EmployeeFormDrawer({
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="name@company.com"
-                    className="w-full rounded-[6px] border border-[#eceae4] bg-[#f7f4ed] px-3 py-2 text-xs text-[#1c1c1c] placeholder:text-[#5f5f5d]/60 focus:border-[#1c1c1c] focus:outline-none focus:ring-1 focus:ring-[#1c1c1c]"
+                    className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 shadow-xs transition-all"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-[#1c1c1c] mb-1">
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
                     Phone (+91 Indian Standard)
                   </label>
                   <input
@@ -275,27 +275,27 @@ export function EmployeeFormDrawer({
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="+91 98201 55432"
-                    className="w-full rounded-[6px] border border-[#eceae4] bg-[#f7f4ed] px-3 py-2 text-xs text-[#1c1c1c] placeholder:text-[#5f5f5d]/60 focus:border-[#1c1c1c] focus:outline-none focus:ring-1 focus:ring-[#1c1c1c] font-mono"
+                    className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 font-mono shadow-xs transition-all"
                   />
                 </div>
               </div>
             </div>
 
             {/* Department & Role */}
-            <div className="space-y-4 pt-3 border-t border-[#eceae4]">
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-[#1c1c1c] flex items-center gap-1.5">
-                <Briefcase className="h-3 w-3 text-[#5f5f5d]" /> Organization & Position
+            <div className="space-y-4 pt-4 border-t border-slate-100">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+                <Briefcase className="h-3.5 w-3.5 text-indigo-600" /> Organization & Position
               </h3>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
-                  <label className="block text-xs font-medium text-[#1c1c1c] mb-1">
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
                     Department <span className="text-rose-500">*</span>
                   </label>
                   <select
                     value={departmentId}
                     onChange={(e) => setDepartmentId(e.target.value)}
-                    className="w-full rounded-[6px] border border-[#eceae4] bg-[#f7f4ed] px-3 py-2 text-xs text-[#1c1c1c] focus:border-[#1c1c1c] focus:outline-none focus:ring-1 focus:ring-[#1c1c1c]"
+                    className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 shadow-xs transition-all"
                   >
                     {departments.map((dept) => (
                       <option key={dept.id} value={dept.id}>
@@ -306,7 +306,7 @@ export function EmployeeFormDrawer({
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-[#1c1c1c] mb-1">
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
                     Designation / Title <span className="text-rose-500">*</span>
                   </label>
                   <input
@@ -315,20 +315,20 @@ export function EmployeeFormDrawer({
                     value={designation}
                     onChange={(e) => setDesignation(e.target.value)}
                     placeholder="e.g. Senior Backend Engineer"
-                    className="w-full rounded-[6px] border border-[#eceae4] bg-[#f7f4ed] px-3 py-2 text-xs text-[#1c1c1c] placeholder:text-[#5f5f5d]/60 focus:border-[#1c1c1c] focus:outline-none focus:ring-1 focus:ring-[#1c1c1c]"
+                    className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 shadow-xs transition-all"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
-                  <label className="block text-xs font-medium text-[#1c1c1c] mb-1">
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
                     Office Location
                   </label>
                   <select
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
-                    className="w-full rounded-[6px] border border-[#eceae4] bg-[#f7f4ed] px-3 py-2 text-xs text-[#1c1c1c] focus:border-[#1c1c1c] focus:outline-none focus:ring-1 focus:ring-[#1c1c1c]"
+                    className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 shadow-xs transition-all"
                   >
                     {INDIAN_LOCATIONS.map((loc) => (
                       <option key={loc} value={loc}>
@@ -339,27 +339,27 @@ export function EmployeeFormDrawer({
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-[#1c1c1c] mb-1">
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
                     Date of Joining
                   </label>
                   <input
                     type="date"
                     value={joiningDate}
                     onChange={(e) => setJoiningDate(e.target.value)}
-                    className="w-full rounded-[6px] border border-[#eceae4] bg-[#f7f4ed] px-3 py-2 text-xs text-[#1c1c1c] focus:border-[#1c1c1c] focus:outline-none focus:ring-1 focus:ring-[#1c1c1c]"
+                    className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 shadow-xs transition-all"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
-                  <label className="block text-xs font-medium text-[#1c1c1c] mb-1">
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
                     Employment Status
                   </label>
                   <select
                     value={status}
                     onChange={(e) => setStatus(e.target.value as EmployeeStatus)}
-                    className="w-full rounded-[6px] border border-[#eceae4] bg-[#f7f4ed] px-3 py-2 text-xs text-[#1c1c1c] focus:border-[#1c1c1c] focus:outline-none focus:ring-1 focus:ring-[#1c1c1c] capitalize"
+                    className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 shadow-xs transition-all capitalize"
                   >
                     <option value="active">Active</option>
                     <option value="on_leave">On Leave</option>
@@ -370,13 +370,13 @@ export function EmployeeFormDrawer({
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-[#1c1c1c] mb-1">
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
                     Portal Access Role
                   </label>
                   <select
                     value={role}
                     onChange={(e) => setRole(e.target.value as UserRole)}
-                    className="w-full rounded-[6px] border border-[#eceae4] bg-[#f7f4ed] px-3 py-2 text-xs text-[#1c1c1c] focus:border-[#1c1c1c] focus:outline-none focus:ring-1 focus:ring-[#1c1c1c]"
+                    className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 shadow-xs transition-all"
                   >
                     <option value="employee">Employee (Standard Portal)</option>
                     <option value="admin">Admin (HR Manager Privileges)</option>
@@ -386,17 +386,17 @@ export function EmployeeFormDrawer({
             </div>
 
             {/* Compensation & Leaves */}
-            <div className="space-y-4 pt-3 border-t border-[#eceae4]">
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-[#1c1c1c] flex items-center gap-1.5">
-                <IndianRupee className="h-3 w-3 text-[#5f5f5d]" /> Compensation & Leave Quotas
+            <div className="space-y-4 pt-4 border-t border-slate-100">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
+                <IndianRupee className="h-3.5 w-3.5 text-indigo-600" /> Compensation & Leave Quotas
               </h3>
 
               <div>
-                <label className="block text-xs font-medium text-[#1c1c1c] mb-1">
+                <label className="block text-xs font-semibold text-slate-700 mb-1">
                   Annual CTC (Gross INR ₹)
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-[#5f5f5d] font-mono">
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 font-mono font-bold">
                     ₹
                   </span>
                   <input
@@ -405,14 +405,14 @@ export function EmployeeFormDrawer({
                     step="50000"
                     value={salary}
                     onChange={(e) => setSalary(Number(e.target.value))}
-                    className="w-full rounded-[6px] border border-[#eceae4] bg-[#f7f4ed] pl-7 pr-3 py-2 text-xs text-[#1c1c1c] focus:border-[#1c1c1c] focus:outline-none focus:ring-1 focus:ring-[#1c1c1c] font-mono"
+                    className="w-full rounded-lg border border-slate-200 bg-white pl-7 pr-3 py-2 text-xs text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 font-mono shadow-xs transition-all"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-3 gap-3">
                 <div>
-                  <label className="block text-xs font-medium text-rose-800 mb-1">
+                  <label className="block text-xs font-semibold text-rose-700 mb-1">
                     Sick Leave
                   </label>
                   <input
@@ -421,12 +421,12 @@ export function EmployeeFormDrawer({
                     max="50"
                     value={sickLeave}
                     onChange={(e) => setSickLeave(Number(e.target.value))}
-                    className="w-full rounded-[6px] border border-[#eceae4] bg-[#f7f4ed] px-3 py-2 text-xs text-[#1c1c1c] focus:border-[#1c1c1c] focus:outline-none focus:ring-1 focus:ring-[#1c1c1c] font-mono text-center"
+                    className="w-full rounded-lg border border-rose-200 bg-rose-50/50 px-3 py-2 text-xs text-slate-900 focus:border-rose-500 focus:outline-none focus:ring-2 focus:ring-rose-500/20 font-mono text-center font-bold"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-amber-800 mb-1">
+                  <label className="block text-xs font-semibold text-amber-700 mb-1">
                     Casual Leave
                   </label>
                   <input
@@ -435,12 +435,12 @@ export function EmployeeFormDrawer({
                     max="50"
                     value={casualLeave}
                     onChange={(e) => setCasualLeave(Number(e.target.value))}
-                    className="w-full rounded-[6px] border border-[#eceae4] bg-[#f7f4ed] px-3 py-2 text-xs text-[#1c1c1c] focus:border-[#1c1c1c] focus:outline-none focus:ring-1 focus:ring-[#1c1c1c] font-mono text-center"
+                    className="w-full rounded-lg border border-amber-200 bg-amber-50/50 px-3 py-2 text-xs text-slate-900 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500/20 font-mono text-center font-bold"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-emerald-800 mb-1">
+                  <label className="block text-xs font-semibold text-emerald-700 mb-1">
                     Earned Leave
                   </label>
                   <input
@@ -449,7 +449,7 @@ export function EmployeeFormDrawer({
                     max="50"
                     value={earnedLeave}
                     onChange={(e) => setEarnedLeave(Number(e.target.value))}
-                    className="w-full rounded-[6px] border border-[#eceae4] bg-[#f7f4ed] px-3 py-2 text-xs text-[#1c1c1c] focus:border-[#1c1c1c] focus:outline-none focus:ring-1 focus:ring-[#1c1c1c] font-mono text-center"
+                    className="w-full rounded-lg border border-emerald-200 bg-emerald-50/50 px-3 py-2 text-xs text-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 font-mono text-center font-bold"
                   />
                 </div>
               </div>
@@ -457,12 +457,12 @@ export function EmployeeFormDrawer({
           </form>
 
           {/* Footer */}
-          <div className="p-4 sm:p-6 border-t border-[#eceae4] bg-[#f7f4ed] flex items-center justify-end gap-3">
+          <div className="p-4 sm:p-6 border-t border-slate-200 bg-slate-50/70 flex items-center justify-end gap-3">
             <button
               type="button"
               onClick={onClose}
               disabled={submitting}
-              className="rounded-[6px] border border-[#eceae4] bg-[#f7f4ed] px-4 py-2 text-xs font-medium text-[#1c1c1c] hover:bg-[#eceae4]/50 transition-colors"
+              className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-700 hover:border-slate-300 hover:bg-slate-50 transition-all shadow-xs"
             >
               Cancel
             </button>
@@ -470,7 +470,7 @@ export function EmployeeFormDrawer({
               type="submit"
               form="employee-form"
               disabled={submitting}
-              className="rounded-[6px] bg-[#1c1c1c] hover:bg-[#2b2b2b] text-[#fcfbf8] shadow-button-inset px-5 py-2 text-xs font-semibold transition-all active:scale-[0.98] disabled:opacity-50"
+              className="rounded-lg bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white shadow-md shadow-indigo-500/25 px-5 py-2 text-xs font-bold transition-all active:scale-[0.98] disabled:opacity-50"
             >
               {submitting
                 ? 'Saving Record...'

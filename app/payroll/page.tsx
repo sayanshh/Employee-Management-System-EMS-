@@ -164,15 +164,15 @@ export default function PayrollPage() {
         {/* Top Header & Context Description */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2">
-              <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-[#1c1c1c] -tracking-tight">
+            <div className="flex items-center gap-2.5">
+              <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
                 {role === 'admin' ? 'Payroll Administration' : 'My Compensation & Payslips'}
               </h2>
-              <span className="rounded-full bg-[#eceae4] border border-[#eceae4] px-2.5 py-0.5 text-xs font-semibold text-[#1c1c1c]">
+              <span className="rounded-full bg-indigo-50 border border-indigo-200 px-2.5 py-0.5 text-xs font-bold text-indigo-700 shadow-xs">
                 FY 2026-27
               </span>
             </div>
-            <p className="text-xs text-[#5f5f5d] mt-1">
+            <p className="text-xs text-slate-500 mt-1 font-medium">
               {role === 'admin'
                 ? 'Automated monthly disbursement calculations, statutory PF/PT deductions, and payslips.'
                 : 'Review your monthly salary statements, itemized allowances, and download official PDF slips.'}
@@ -185,7 +185,7 @@ export default function PayrollPage() {
               <button
                 onClick={handleRunPayroll}
                 disabled={processingRun}
-                className="inline-flex items-center gap-1.5 rounded-[6px] bg-[#1c1c1c] hover:bg-[#2b2b2b] text-[#fcfbf8] shadow-button-inset px-4 py-2.5 text-xs font-semibold transition-all active:scale-[0.98] disabled:opacity-50"
+                className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white shadow-md shadow-indigo-500/25 px-4.5 py-2.5 text-xs font-bold transition-all active:scale-[0.98] disabled:opacity-50"
               >
                 <Play className={cn('h-3.5 w-3.5 fill-current', processingRun && 'animate-spin')} />
                 <span>{processingRun ? 'Running Calculation...' : `Run ${selectedMonth} Payroll`}</span>
@@ -196,7 +196,7 @@ export default function PayrollPage() {
 
         {/* Action feedback banner */}
         {actionSuccessMsg && (
-          <div className="rounded-[8px] border border-emerald-200 bg-emerald-50 p-3.5 text-xs text-emerald-800 flex items-center gap-2 animate-in fade-in duration-200">
+          <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-xs font-semibold text-emerald-800 flex items-center gap-2.5 animate-in fade-in duration-200 shadow-xs">
             <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600" />
             <span>{actionSuccessMsg}</span>
           </div>
@@ -210,47 +210,47 @@ export default function PayrollPage() {
             {/* 4 Payroll Summary KPI Cards for Selected Month */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {/* Gross Payroll */}
-              <div className="rounded-[16px] border border-[#eceae4] bg-[#f7f4ed] p-5 shadow-sm lovable-card-interactive">
-                <span className="text-xs font-medium text-[#5f5f5d]">Total Gross Payroll</span>
-                <div className="mt-2 text-2xl font-bold font-mono tracking-tight text-[#1c1c1c]">
+              <div className="rounded-2xl border-2 border-slate-200/90 bg-white p-5 shadow-sm border-t-4 border-t-indigo-500 hover:shadow-lg transition-all">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Total Gross Payroll</span>
+                <div className="mt-2 text-2xl font-bold font-mono tracking-tight text-slate-900">
                   {formatCurrencyINR(monthKpis.totalGross)}
                 </div>
-                <p className="mt-1 text-xs text-[#5f5f5d]">Active headcount ({monthKpis.totalCount} staff)</p>
+                <p className="mt-1 text-xs text-slate-500">Active headcount ({monthKpis.totalCount} staff)</p>
               </div>
 
               {/* Total Deductions */}
-              <div className="rounded-[16px] border border-[#eceae4] bg-[#f7f4ed] p-5 shadow-sm lovable-card-interactive">
-                <span className="text-xs font-medium text-[#5f5f5d]">Statutory Deductions</span>
-                <div className="mt-2 text-2xl font-bold font-mono tracking-tight text-rose-800">
+              <div className="rounded-2xl border-2 border-slate-200/90 bg-white p-5 shadow-sm border-t-4 border-t-rose-500 hover:shadow-lg transition-all">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Statutory Deductions</span>
+                <div className="mt-2 text-2xl font-bold font-mono tracking-tight text-rose-700">
                   -{formatCurrencyINR(monthKpis.totalDeductions)}
                 </div>
-                <p className="mt-1 text-xs text-[#5f5f5d]">EPF 12% + PT ₹200 standard</p>
+                <p className="mt-1 text-xs text-slate-500">EPF 12% + PT ₹200 standard</p>
               </div>
 
               {/* Net Disbursement */}
-              <div className="rounded-[16px] border border-[#eceae4] bg-[#f7f4ed] p-5 shadow-sm lovable-card-interactive">
-                <span className="text-xs font-medium text-[#5f5f5d]">Net Disbursable Amount</span>
-                <div className="mt-2 text-2xl font-bold font-mono tracking-tight text-emerald-800">
+              <div className="rounded-2xl border-2 border-slate-200/90 bg-white p-5 shadow-sm border-t-4 border-t-emerald-500 hover:shadow-lg transition-all">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Net Disbursable Amount</span>
+                <div className="mt-2 text-2xl font-bold font-mono tracking-tight text-emerald-700">
                   {formatCurrencyINR(monthKpis.totalNet)}
                 </div>
-                <p className="mt-1 text-xs text-emerald-800 flex items-center gap-1">
+                <p className="mt-1 text-xs text-emerald-700 font-medium flex items-center gap-1">
                   <TrendingUp className="h-3.5 w-3.5 text-emerald-600" />
                   <span>Direct HDFC NEFT / RTGS</span>
                 </p>
               </div>
 
               {/* Status Settlement */}
-              <div className="rounded-[16px] border border-[#eceae4] bg-[#f7f4ed] p-5 shadow-sm lovable-card-interactive">
-                <span className="text-xs font-medium text-[#5f5f5d]">Settlement Status</span>
-                <div className="mt-2 text-xl font-bold text-[#1c1c1c] flex items-center gap-2">
-                  <span className="text-emerald-800 font-mono">{monthKpis.paidCount} Paid</span>
-                  <span className="text-[#5f5f5d]">/</span>
-                  <span className="text-amber-800 font-mono">{monthKpis.pendingCount} Pending</span>
+              <div className="rounded-2xl border-2 border-slate-200/90 bg-white p-5 shadow-sm border-t-4 border-t-amber-500 hover:shadow-lg transition-all">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Settlement Status</span>
+                <div className="mt-2 text-xl font-bold text-slate-900 flex items-center gap-2">
+                  <span className="text-emerald-700 font-mono">{monthKpis.paidCount} Paid</span>
+                  <span className="text-slate-300">/</span>
+                  <span className="text-amber-700 font-mono">{monthKpis.pendingCount} Pending</span>
                 </div>
                 {monthKpis.pendingCount > 0 && (
                   <button
                     onClick={handleBulkPay}
-                    className="mt-2 text-xs font-semibold text-[#1c1c1c] hover:underline flex items-center gap-1 transition-colors active:scale-95"
+                    className="mt-2 text-xs font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1 transition-colors active:scale-95"
                   >
                     <CheckCheck className="h-3.5 w-3.5" />
                     <span>Disburse All Pending ({monthKpis.pendingCount})</span>
@@ -260,15 +260,15 @@ export default function PayrollPage() {
             </div>
 
             {/* Filter and Cycle Control Bar */}
-            <div className="rounded-[16px] border border-[#eceae4] bg-[#f7f4ed] p-4 sm:p-5 shadow-sm space-y-4">
+            <div className="rounded-2xl border border-slate-200/90 bg-white p-5 shadow-sm space-y-4">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                 {/* Month Cycle Selector */}
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-medium text-[#5f5f5d]">Payroll Cycle:</span>
+                <div className="flex items-center gap-2.5">
+                  <span className="text-xs font-semibold text-slate-600">Payroll Cycle:</span>
                   <select
                     value={selectedMonth}
                     onChange={(e) => setSelectedMonth(e.target.value)}
-                    className="rounded-[6px] border border-[#eceae4] bg-[#f7f4ed] px-3.5 py-2 text-xs text-[#1c1c1c] focus:border-[#1c1c1c] focus:outline-none focus:ring-1 focus:ring-[#1c1c1c] font-semibold"
+                    className="rounded-lg border border-slate-200 bg-white px-3.5 py-2 text-xs text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 font-bold shadow-xs"
                   >
                     {PAYROLL_MONTHS.map((m) => (
                       <option key={m} value={m}>
@@ -283,7 +283,7 @@ export default function PayrollPage() {
                   <select
                     value={statusFilter}
                     onChange={(e) => setStatusFilter(e.target.value)}
-                    className="rounded-[6px] border border-[#eceae4] bg-[#f7f4ed] px-3 py-2 text-xs text-[#1c1c1c] focus:border-[#1c1c1c] focus:outline-none focus:ring-1 focus:ring-[#1c1c1c] capitalize"
+                    className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 shadow-xs font-medium capitalize"
                   >
                     <option value="all">All Statuses</option>
                     <option value="paid">Paid</option>
@@ -291,13 +291,13 @@ export default function PayrollPage() {
                   </select>
 
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#5f5f5d]" />
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400" />
                     <input
                       type="text"
                       placeholder="Search staff or code..."
                       value={search}
                       onChange={(e) => setSearch(e.target.value)}
-                      className="rounded-[6px] border border-[#eceae4] bg-[#f7f4ed] pl-8 pr-3 py-2 text-xs text-[#1c1c1c] placeholder:text-[#5f5f5d]/60 focus:border-[#1c1c1c] focus:outline-none focus:ring-1 focus:ring-[#1c1c1c] w-44"
+                      className="rounded-lg border border-slate-200 bg-white pl-8 pr-3 py-2 text-xs text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 shadow-xs w-44 font-medium"
                     />
                   </div>
                 </div>
@@ -305,61 +305,62 @@ export default function PayrollPage() {
             </div>
 
             {/* Payroll Ledger Table */}
-            <div className="rounded-[16px] border border-[#eceae4] bg-[#f7f4ed] overflow-hidden shadow-sm">
+            <div className="rounded-2xl border border-slate-200/90 bg-white overflow-hidden shadow-sm">
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs">
                   <thead>
-                    <tr className="border-b border-[#eceae4] bg-[#eceae4]/40 text-[#5f5f5d] font-medium">
+                    <tr className="border-b border-slate-200 bg-slate-50/90 text-slate-700 font-semibold">
                       <th className="py-3.5 pl-4">Staff Member</th>
                       <th className="py-3.5">Basic (50%)</th>
                       <th className="py-3.5">Allowances (50%)</th>
                       <th className="py-3.5">Gross Pay</th>
                       <th className="py-3.5">Deductions</th>
-                      <th className="py-3.5 font-bold text-[#1c1c1c]">Net Payout</th>
+                      <th className="py-3.5 font-bold text-slate-900">Net Payout</th>
                       <th className="py-3.5">Status</th>
                       <th className="py-3.5 pr-4 text-right">Actions</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-[#eceae4]">
+                  <tbody className="divide-y divide-slate-100">
                     {filteredMonthRecords.length === 0 ? (
                       <tr>
-                        <td colSpan={8} className="py-10 text-center text-[#5f5f5d]">
+                        <td colSpan={8} className="py-10 text-center text-slate-500 font-medium">
                           No payroll records found for {selectedMonth}. Click &quot;Run {selectedMonth} Payroll&quot; to calculate.
                         </td>
                       </tr>
                     ) : (
                       filteredMonthRecords.map((rec) => (
-                        <tr key={rec.id} className="hover:bg-[#eceae4]/30 transition-colors">
+                        <tr key={rec.id} className="hover:bg-indigo-50/40 transition-colors">
                           <td className="py-3.5 pl-4">
-                            <div className="font-semibold text-[#1c1c1c]">{rec.employeeName}</div>
-                            <div className="text-[11px] text-[#5f5f5d]">
-                              {rec.employeeCode || rec.employeeId} • {rec.designation || 'Staff'}
+                            <div className="font-semibold text-slate-900">{rec.employeeName}</div>
+                            <div className="text-[11px] text-slate-500">
+                              <span className="font-mono font-medium text-indigo-600">{rec.employeeCode || rec.employeeId}</span> • {rec.designation || 'Staff'}
                             </div>
                           </td>
-                          <td className="py-3.5 text-[#1c1c1c] font-mono">
+                          <td className="py-3.5 text-slate-800 font-mono font-medium">
                             {formatCurrencyINR(rec.basicSalary)}
                           </td>
-                          <td className="py-3.5 text-[#1c1c1c] font-mono">
+                          <td className="py-3.5 text-slate-800 font-mono font-medium">
                             {formatCurrencyINR(rec.allowances)}
                           </td>
-                          <td className="py-3.5 text-[#1c1c1c] font-mono font-medium">
+                          <td className="py-3.5 text-slate-900 font-mono font-semibold">
                             {formatCurrencyINR(rec.grossSalary || rec.basicSalary + rec.allowances)}
                           </td>
-                          <td className="py-3.5 text-rose-800 font-mono">
+                          <td className="py-3.5 text-rose-700 font-mono font-medium">
                             -{formatCurrencyINR(rec.deductions)}
                           </td>
-                          <td className="py-3.5 font-bold font-mono text-emerald-800">
+                          <td className="py-3.5 font-bold font-mono text-emerald-700">
                             {formatCurrencyINR(rec.netSalary)}
                           </td>
                           <td className="py-3.5">
                             <span
                               className={cn(
-                                'inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider border capitalize',
+                                'inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider border capitalize shadow-xs',
                                 rec.status === 'paid'
-                                  ? 'bg-emerald-50 text-emerald-800 border-emerald-200/80'
-                                  : 'bg-amber-50 text-amber-800 border-amber-200/80'
+                                  ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                                  : 'bg-amber-50 text-amber-700 border-amber-200'
                               )}
                             >
+                              <span className={cn('h-1.5 w-1.5 rounded-full', rec.status === 'paid' ? 'bg-emerald-500' : 'bg-amber-500 animate-pulse')} />
                               {rec.status}
                             </span>
                           </td>
@@ -368,14 +369,14 @@ export default function PayrollPage() {
                               {rec.status === 'pending' && (
                                 <button
                                   onClick={() => handleMarkAsPaid(rec.id)}
-                                  className="rounded-[6px] bg-[#1c1c1c] hover:bg-[#2b2b2b] text-[#fcfbf8] shadow-button-inset px-2.5 py-1 text-[11px] font-medium transition-all active:scale-[0.98]"
+                                  className="rounded-lg bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-xs px-2.5 py-1 text-[11px] font-bold transition-all active:scale-[0.98]"
                                 >
                                   Mark as Paid
                                 </button>
                               )}
                               <button
                                 onClick={() => setSelectedPayslip(rec)}
-                                className="inline-flex items-center gap-1 rounded-[6px] border border-[#eceae4] bg-[#f7f4ed] hover:bg-[#eceae4]/50 text-[#1c1c1c] px-2.5 py-1 text-[11px] font-medium transition-colors"
+                                className="inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-white hover:border-indigo-300 hover:text-indigo-600 hover:bg-indigo-50/50 text-slate-700 px-2.5 py-1 text-[11px] font-semibold transition-all shadow-xs"
                               >
                                 <Eye className="h-3 w-3" />
                                 <span>Payslip</span>
@@ -397,120 +398,121 @@ export default function PayrollPage() {
           <div className="space-y-6">
             {/* Compensation Overview Hero Card */}
             {personalComp && (
-              <div className="rounded-[16px] border border-[#eceae4] bg-[#f7f4ed] p-6 shadow-sm relative overflow-hidden">
+              <div className="rounded-2xl border border-slate-200/90 bg-gradient-to-r from-white via-indigo-50/20 to-purple-50/30 p-6 shadow-sm relative overflow-hidden">
                 <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-[#eceae4] border border-[#eceae4] px-2.5 py-0.5 text-[11px] font-semibold text-[#1c1c1c] mb-2">
-                      <Sparkles className="h-3 w-3 text-[#5f5f5d]" /> Annual Compensation Structure
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-indigo-50 border border-indigo-200 px-3 py-0.5 text-[11px] font-bold text-indigo-700 mb-2 shadow-xs">
+                      <Sparkles className="h-3 w-3 text-indigo-500" /> Annual Compensation Structure
                     </span>
-                    <h2 className="text-2xl font-bold tracking-tight text-[#1c1c1c] -tracking-tight">
+                    <h2 className="text-2xl font-bold tracking-tight text-slate-900">
                       {formatCurrencyINR(currentEmployee?.salary || 0)}{' '}
-                      <span className="text-xs text-[#5f5f5d] font-normal">Annual CTC</span>
+                      <span className="text-xs text-slate-500 font-normal">Annual CTC</span>
                     </h2>
-                    <p className="text-xs text-[#5f5f5d] mt-1">
+                    <p className="text-xs text-slate-500 mt-1 font-medium">
                       {currentEmployee?.fullName} • {currentEmployee?.designation} ({currentEmployee?.departmentName})
                     </p>
                   </div>
 
-                  <div className="rounded-[12px] border border-[#eceae4] bg-[#eceae4]/40 p-4 text-left sm:text-right min-w-[200px]">
-                    <span className="text-xs text-[#5f5f5d] font-medium">Estimated Monthly Take-Home</span>
-                    <div className="text-2xl font-bold font-mono text-emerald-800 mt-0.5">
+                  <div className="rounded-xl border border-slate-200 bg-white p-4.5 text-left sm:text-right min-w-[200px] shadow-sm">
+                    <span className="text-xs text-slate-500 font-semibold">Estimated Monthly Take-Home</span>
+                    <div className="text-2xl font-extrabold font-mono text-emerald-700 mt-0.5">
                       {formatCurrencyINR(personalComp.net)}
                     </div>
-                    <span className="text-[11px] text-[#5f5f5d]">After statutory EPF & PT deductions</span>
+                    <span className="text-[11px] text-slate-400 font-medium">After statutory EPF & PT deductions</span>
                   </div>
                 </div>
 
                 {/* Compensation breakdown pills */}
-                <div className="mt-6 pt-5 border-t border-[#eceae4] grid grid-cols-2 sm:grid-cols-5 gap-3 text-xs">
-                  <div className="rounded-[8px] border border-[#eceae4] bg-[#f7f4ed] p-3">
-                    <span className="text-[#5f5f5d] block text-[11px]">Basic Pay (50%)</span>
-                    <strong className="text-[#1c1c1c] font-mono mt-0.5 block">{formatCurrencyINR(personalComp.basic)}</strong>
+                <div className="mt-6 pt-5 border-t border-slate-100 grid grid-cols-2 sm:grid-cols-5 gap-3 text-xs">
+                  <div className="rounded-xl border border-slate-200/80 bg-white p-3.5 shadow-xs">
+                    <span className="text-slate-500 block text-[11px] font-medium">Basic Pay (50%)</span>
+                    <strong className="text-slate-900 font-mono mt-1 block font-bold">{formatCurrencyINR(personalComp.basic)}</strong>
                   </div>
-                  <div className="rounded-[8px] border border-[#eceae4] bg-[#f7f4ed] p-3">
-                    <span className="text-[#5f5f5d] block text-[11px]">HRA (20%)</span>
-                    <strong className="text-[#1c1c1c] font-mono mt-0.5 block">{formatCurrencyINR(personalComp.hra)}</strong>
+                  <div className="rounded-xl border border-slate-200/80 bg-white p-3.5 shadow-xs">
+                    <span className="text-slate-500 block text-[11px] font-medium">HRA (20%)</span>
+                    <strong className="text-slate-900 font-mono mt-1 block font-bold">{formatCurrencyINR(personalComp.hra)}</strong>
                   </div>
-                  <div className="rounded-[8px] border border-[#eceae4] bg-[#f7f4ed] p-3">
-                    <span className="text-[#5f5f5d] block text-[11px]">Special Allow. (30%)</span>
-                    <strong className="text-[#1c1c1c] font-mono mt-0.5 block">{formatCurrencyINR(personalComp.special)}</strong>
+                  <div className="rounded-xl border border-slate-200/80 bg-white p-3.5 shadow-xs">
+                    <span className="text-slate-500 block text-[11px] font-medium">Special Allow. (30%)</span>
+                    <strong className="text-slate-900 font-mono mt-1 block font-bold">{formatCurrencyINR(personalComp.special)}</strong>
                   </div>
-                  <div className="rounded-[8px] border border-[#eceae4] bg-[#f7f4ed] p-3">
-                    <span className="text-[#5f5f5d] block text-[11px]">EPF Deduction</span>
-                    <strong className="text-rose-800 font-mono mt-0.5 block">-{formatCurrencyINR(personalComp.pf)}</strong>
+                  <div className="rounded-xl border border-rose-200 bg-rose-50/50 p-3.5 shadow-xs">
+                    <span className="text-rose-700 block text-[11px] font-semibold">EPF Deduction</span>
+                    <strong className="text-rose-800 font-mono mt-1 block font-bold">-{formatCurrencyINR(personalComp.pf)}</strong>
                   </div>
-                  <div className="rounded-[8px] border border-[#eceae4] bg-[#f7f4ed] p-3">
-                    <span className="text-[#5f5f5d] block text-[11px]">Prof. Tax (PT)</span>
-                    <strong className="text-rose-800 font-mono mt-0.5 block">-{formatCurrencyINR(personalComp.pt)}</strong>
+                  <div className="rounded-xl border border-rose-200 bg-rose-50/50 p-3.5 shadow-xs">
+                    <span className="text-rose-700 block text-[11px] font-semibold">Prof. Tax (PT)</span>
+                    <strong className="text-rose-800 font-mono mt-1 block font-bold">-{formatCurrencyINR(personalComp.pt)}</strong>
                   </div>
                 </div>
               </div>
             )}
 
             {/* My Payslips Archive Table */}
-            <div className="rounded-[16px] border border-[#eceae4] bg-[#f7f4ed] overflow-hidden shadow-sm">
-              <div className="p-4 sm:p-5 border-b border-[#eceae4] flex items-center justify-between">
+            <div className="rounded-2xl border border-slate-200/90 bg-white overflow-hidden shadow-sm">
+              <div className="p-5 border-b border-slate-100 flex items-center justify-between">
                 <div>
-                  <h3 className="text-sm font-bold text-[#1c1c1c] -tracking-tight">Disbursed Salary Slips</h3>
-                  <p className="text-xs text-[#5f5f5d] mt-0.5">
+                  <h3 className="text-sm font-bold text-slate-900 tracking-tight">Disbursed Salary Slips</h3>
+                  <p className="text-xs text-slate-500 mt-0.5">
                     Download and view itemized monthly payslips
                   </p>
                 </div>
-                <span className="text-xs text-[#5f5f5d] font-mono">{personalPayslips.length} Statements</span>
+                <span className="text-xs text-indigo-600 font-mono font-bold">{personalPayslips.length} Statements</span>
               </div>
 
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs">
                   <thead>
-                    <tr className="border-b border-[#eceae4] bg-[#eceae4]/40 text-[#5f5f5d] font-medium">
+                    <tr className="border-b border-slate-200 bg-slate-50/90 text-slate-700 font-semibold">
                       <th className="py-3.5 pl-4">Pay Period</th>
                       <th className="py-3.5">Gross Amount</th>
                       <th className="py-3.5">Total Deductions</th>
-                      <th className="py-3.5 font-bold text-[#1c1c1c]">Net Credited</th>
+                      <th className="py-3.5 font-bold text-slate-900">Net Credited</th>
                       <th className="py-3.5">Status</th>
                       <th className="py-3.5">Disbursement Date</th>
                       <th className="py-3.5 pr-4 text-right">Receipt</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-[#eceae4]">
+                  <tbody className="divide-y divide-slate-100">
                     {personalPayslips.length === 0 ? (
                       <tr>
-                        <td colSpan={7} className="py-8 text-center text-[#5f5f5d]">
+                        <td colSpan={7} className="py-8 text-center text-slate-500 font-medium">
                           No payslips recorded for your profile yet.
                         </td>
                       </tr>
                     ) : (
                       personalPayslips.map((slip) => (
-                        <tr key={slip.id} className="hover:bg-[#eceae4]/30 transition-colors">
-                          <td className="py-3.5 pl-4 font-semibold text-[#1c1c1c]">{slip.month}</td>
-                          <td className="py-3.5 text-[#1c1c1c] font-mono">
+                        <tr key={slip.id} className="hover:bg-indigo-50/40 transition-colors">
+                          <td className="py-3.5 pl-4 font-bold text-slate-900">{slip.month}</td>
+                          <td className="py-3.5 text-slate-800 font-mono font-medium">
                             {formatCurrencyINR(slip.grossSalary || slip.basicSalary + slip.allowances)}
                           </td>
-                          <td className="py-3.5 text-rose-800 font-mono">
+                          <td className="py-3.5 text-rose-700 font-mono font-medium">
                             -{formatCurrencyINR(slip.deductions)}
                           </td>
-                          <td className="py-3.5 font-bold font-mono text-emerald-800">
+                          <td className="py-3.5 font-bold font-mono text-emerald-700">
                             {formatCurrencyINR(slip.netSalary)}
                           </td>
                           <td className="py-3.5">
                             <span
                               className={cn(
-                                'inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider border capitalize',
+                                'inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider border capitalize shadow-xs',
                                 slip.status === 'paid'
-                                  ? 'bg-emerald-50 text-emerald-800 border-emerald-200/80'
-                                  : 'bg-amber-50 text-amber-800 border-amber-200/80'
+                                  ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                                  : 'bg-amber-50 text-amber-700 border-amber-200'
                               )}
                             >
+                              <span className={cn('h-1.5 w-1.5 rounded-full', slip.status === 'paid' ? 'bg-emerald-500' : 'bg-amber-500 animate-pulse')} />
                               {slip.status}
                             </span>
                           </td>
-                          <td className="py-3.5 text-[#5f5f5d] font-mono">{slip.paymentDate}</td>
+                          <td className="py-3.5 text-slate-600 font-mono font-medium">{slip.paymentDate}</td>
                           <td className="py-3.5 pr-4 text-right">
                             <button
                               onClick={() => setSelectedPayslip(slip)}
-                              className="inline-flex items-center gap-1.5 rounded-[6px] border border-[#eceae4] bg-[#f7f4ed] hover:bg-[#eceae4]/50 text-[#1c1c1c] px-3 py-1.5 text-xs font-medium transition-colors"
+                              className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white hover:border-indigo-300 hover:text-indigo-600 hover:bg-indigo-50/50 text-slate-700 px-3 py-1.5 text-xs font-semibold transition-all shadow-xs"
                             >
-                              <FileText className="h-3.5 w-3.5 text-[#5f5f5d]" />
+                              <FileText className="h-3.5 w-3.5 text-indigo-500" />
                               <span>View Payslip</span>
                             </button>
                           </td>
